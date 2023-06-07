@@ -1,0 +1,67 @@
+<!-- include header -->
+<%- include('include/_header.ejs')%>
+    <!-- /include header -->
+
+    <div class="container mb-2">
+        <a href="/api/users" class="btn btn-outline-primary"><i class="fa-solid fa-backward"
+                style="color: #6f93d3;"></i>&nbsp;All Users</a>
+    </div>
+    <div class="container mb-4">
+        <h2 class="my-3 text-center">Update User</h2>
+    </div>
+
+    <form method="PUT" id="update_user">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <form action="#" method="post">
+                        <div class="form-floating mb-3">
+                            <input type="hidden" name="id" id="userId" value="<%= users._id %>">
+                            <input type="text" class="form-control" id="name" name="name" value="<%= users.name%>"
+                                placeholder="Name">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="email" name="email" value="<%= users.email%>"
+                                placeholder="Email">
+                            <label for="email">Email address</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="position" name="position" value="<%= users.position%>"
+                                placeholder="position">
+                            <label for="position">Position</label>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary btn-lg" type="submit">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+        $('#update_user').submit(function (event) {
+            event.preventDefault();
+            const formData = $(this).serialize();
+            const userId = $('#userId').val();
+
+            $.ajax({
+
+                url: `/api/users/${userId}`,
+                type: 'PUT',
+                data: formData,
+                success: function (response) {
+                    alert("Data Updated Successfully!")
+                    window.location.href = 'http://localhost:5000/api/users'
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            });
+        });
+        
+    </script>
+
+    <!-- include footer -->
+    <%- include('include/_footer.ejs')%>
+        <!-- /include footer -->

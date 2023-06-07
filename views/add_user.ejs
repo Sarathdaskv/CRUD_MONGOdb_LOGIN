@@ -1,0 +1,45 @@
+<!-- include header -->
+<%- include('include/_header.ejs')%>
+<!-- /include header -->
+
+<div class="container mb-4">
+    <a href="/api/users" class="btn btn-outline-primary"><i class="fa-solid fa-backward" style="color: #6f93d3;"></i>&nbsp;All Users</a>
+</div>
+<div class="container mb-4">
+    <h2 class="my-3 text-center">New User</h2>
+</div>
+<form action="/api/users" method="POST" id="add_user">
+    <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-10">
+           
+                
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name" name="name" value=""  placeholder="Name">
+                <label for="name">Name</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" name="email" value="" placeholder="Email">
+                <label for="email">Email address</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input class="form-control" id="position" name="position" value="" placeholder="position" >
+                <label for="position">Position</label>
+              </div>
+              <div class="d-grid gap-2">
+                <button class="btn btn-primary btn-lg" type="submit">Save</button>
+              </div>
+           
+          </div>
+        </div>
+      </div>
+</form>
+
+<script>
+  $("#add_user").submit(function(event){
+    alert("Data inserted successfully");
+    })
+</script>
+<!-- include footer -->
+<%- include('include/_footer.ejs')%>
+<!-- /include footer -->
